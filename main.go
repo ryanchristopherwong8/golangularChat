@@ -63,7 +63,7 @@ func main() {
 
 	log.Printf("Running on port %d\n", *port)
 
-	addr := fmt.Sprintf("https://golangularchat.herokuapp.com/:%d", *port)
+	addr := fmt.Sprintf(":%d", *port)
 	// this call blocks -- the progam runs here forever
 	err := http.ListenAndServe(addr, nil)
 	fmt.Println(err.Error())
