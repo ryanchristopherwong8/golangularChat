@@ -49,7 +49,11 @@ func wsHandler(w http.ResponseWriter, r * http.	Request){
 // main entry point to program
 func main() {
 	// command line flags
-	port := flag.Int("port", 8000, "port to serve on")
+	//port := flag.Int("port", 8000, "port to serve on")
+	port := os.Getenv("PORT")
+    if port == "" {
+        log.WithField("PORT", port).Fatal("$PORT must be set")
+    }
 	dir := flag.String("directory", "./public/web/", "directory of web files")
 	flag.Parse()
 	connections = make(map[*websocket.Conn]bool)
