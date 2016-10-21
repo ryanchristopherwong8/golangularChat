@@ -1,0 +1,12 @@
+{
+	"ImportPath": "github.com/ryanchristopherwong8/golangularChat",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v74",
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorilla/websocket",
+			"Comment": "v1.0.0-29-g460e0a9",
+			"Rev": "460e0a996e9004dce40c3697e5ed4d7bc5a69b93"
+		}
+	]
+}
