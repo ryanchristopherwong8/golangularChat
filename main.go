@@ -50,17 +50,15 @@ func wsHandler(w http.ResponseWriter, r * http.	Request){
 func main() {
 	// command line flags
 	port := flag.Int("port", 8000, "port to serve on")
-	dir := flag.String("directory", "web/", "directory of web files")
+	dir := flag.String("directory", "./public/web/", "directory of web files")
 	flag.Parse()
 	connections = make(map[*websocket.Conn]bool)
-
+	//http.Handle("/", http.FileServer(http.Dir("./public")))
 
 	// handle all requests by serving a file of the same name
 	fs := http.Dir(*dir)
 	fileHandler := http.FileServer(fs)
-	//http.Handle("/", fileHandler)
-	http.Handle("/", http.FileServer(http.Dir("./public")))
-	
+	http.Handle("/", fileHandler)
 	//handle func (takes in a function) , rather than a handler object
 	http.HandleFunc("/ws", wsHandler)
 
