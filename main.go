@@ -54,10 +54,13 @@ func main() {
 	flag.Parse()
 	connections = make(map[*websocket.Conn]bool)
 
+
 	// handle all requests by serving a file of the same name
 	fs := http.Dir(*dir)
 	fileHandler := http.FileServer(fs)
-	http.Handle("/", fileHandler)
+	//http.Handle("/", fileHandler)
+	http.Handle("/", http.FileServer(http.Dir("./public")))
+	
 	//handle func (takes in a function) , rather than a handler object
 	http.HandleFunc("/ws", wsHandler)
 
