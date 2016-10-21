@@ -69,9 +69,9 @@ func main() {
 	//handle func (takes in a function) , rather than a handler object
 	http.HandleFunc("/ws", wsHandler)
 
-	log.Printf("Running on port %d\n", *port)
+	log.Printf("Running on port %d\n", port)
 
-	addr := fmt.Sprintf(":%d", *port)
+	addr := fmt.Sprintf(":%d", &port)
 	// this call blocks -- the progam runs here forever
 	err := http.ListenAndServe(addr, nil)
 	fmt.Println(err.Error())
