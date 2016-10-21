@@ -52,6 +52,7 @@ func main() {
 	port := flag.Int("port", 8000, "port to serve on")
 	dir := flag.String("directory", "web/", "directory of web files")
 	flag.Parse()
+	connections = make(map[*websocket.Conn]bool)
 
 	// handle all requests by serving a file of the same name
 	fs := http.Dir(*dir)
