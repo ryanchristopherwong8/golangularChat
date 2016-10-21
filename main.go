@@ -57,7 +57,7 @@ func main() {
         log.WithField("PORT", port).Fatal("$PORT must be set")
     }
     */
-	dir := flag.String("directory", "./public/web/", "directory of web files")
+	dir := flag.String("directory", "web/", "directory of web files")
 	flag.Parse()
 	connections = make(map[*websocket.Conn]bool)
 	//http.Handle("/", http.FileServer(http.Dir("./public")))
