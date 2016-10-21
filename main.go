@@ -8,11 +8,10 @@ import (
 	"net/http"
 	"github.com/gorilla/websocket"
 )
-var connections map[*websocket.Conn]bool
+
 // main entry point to program
 func main() {
 	// command line flags
-	connections = make(map[*websocket.Conn]bool)
 	port := flag.Int("port", 8000, "port to serve on")
 	dir := flag.String("directory", "web/", "directory of web files")
 	flag.Parse()
