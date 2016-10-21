@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"github.com/gorilla/websocket"
+	"os"
 )
 var connections map[*websocket.Conn]bool
 
