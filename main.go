@@ -8,6 +8,43 @@ import (
 	"net/http"
 	"github.com/gorilla/websocket"
 )
+var connections map[*websocket.Conn]bool
+
+func sendAll(msg []byte) {
+	for conn := range connections {
+		if err := conn.WriteMessage(websocket.TextMessage, msg); err != nil {
+			// delete connection from map connections
+			delete(connections, conn)
+			return
+		}
+	}
+
+}
+
+// writer => anything we write to w is returned to the client
+// request => client's request
+func wsHandler(w http.ResponseWriter, r * http.	Request){
+	conn, err := websocket.Upgrade(w, r, nil, 1024, 1024)
+	if _, ok := err.(websocket.HandshakeError); ok {
+		http.Error(w, "Not a websocket handshake", 400)
+		return
+	} else if err != nil {
+		log.Println(err)
+		return
+	}
+	defer conn.Close();
+	connections[conn] = true
+	for {
+		_, msg, err := conn.ReadMessage()
+		if err != nil {
+			delete(connections, conn)
+			return
+		}
+		log.Println(string(msg))
+		sendAll(msg)
+	}
+
+}
 
 // main entry point to program
 func main() {
