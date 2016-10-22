@@ -51,7 +51,7 @@ func wsHandler(w http.ResponseWriter, r * http.	Request){
 func main() {
 	// command line flags
 	//port := flag.Int("port", 8000, "port to serve on")
-	port := os.Getenv("PORT")
+	port := 8000
     /*
     if port == "" {
         log.WithField("PORT", port).Fatal("$PORT must be set")
