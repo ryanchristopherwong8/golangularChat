@@ -19,7 +19,7 @@
 	var app = angular.module("chat", []);
 	app.controller("MainCtl", ["$scope", function($scope) {
 		$scope.messages = [];
-		var conn = new WebSocket("wss://https://golangularchat.herokuapp.com/ws");
+		var conn = new WebSocket("ws://https://golangularchat.herokuapp.com/ws");
 		//var conn = new WebSocket("ws://localhost:8000/ws");
 
 		conn.onclose = function(e){
